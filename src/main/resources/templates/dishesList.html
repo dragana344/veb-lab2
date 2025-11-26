@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Add Dish to Chef</title>
@@ -45,20 +45,16 @@
         <ul>
             <li th:each="d:${dishes}">
                 <label>
-                    <input type = "radio" name="dishId" th:value = "${d.dishId}">
+                    <input type = "radio" name="dishId" th:value = "${d.id}">
                     <span th:text="|${d.name} (${d.cuisine}, ${d.preparationTime}min)|"></span>
 
                 </label>
             </li>
         </ul>
 
-<!--        &lt;!&ndash; Dynamically display radio buttons for each dish &ndash;&gt;-->
-<!--        <input type="radio" name="dishId" value="1"> Pasta Carbonara <br/>-->
-<!--        <input type="radio" name="dishId" value="2"> Beef Wellington <br/>-->
-<!--        <input type="radio" name="dishId" value="3"> Chicken Tikka Masala <br/>-->
-<!--        <br/>-->
         <input type="submit" value="Add dish">
     </form>
+    <a href="/chefs">Back to chefs list</a>
 </section>
 <aside>
     <table>

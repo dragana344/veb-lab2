@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Chef Details</title>
-    <style type="text/css">
-        body {
-            width: 800px;
-            margin: auto;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 5px;
-            margin: 5px 0;
-            background-color: #f5f5f5;
-            border-radius: 3px;
-        }
-    </style>
 </head>
 <body>
-<!-- Dynamically display data -->
-<header>
-    <h1 th:text="|CHEF: ${chef.firstName} ${chef.lastName}|"></h1>
-</header>
-<section>
-    <h2 th:text="|BIO: ${chef.bio}|"></h2>
-    <h2>Dishes prepared by this chef:</h2>
+
+<h1 th:text="|CHEF: ${chef.firstName} ${chef.lastName}|"></h1>
+<h3 th:text="|BIO: ${chef.bio}|"></h3>
+
+<h2>Dishes prepared by this chef:</h2>
+<ul>
+    <li th:each="d : ${chef.dishes}"
+        th:text="|${d.name} (${d.cuisine}, ${d.preparationTime} min)|">
+    </li>
+</ul>
+
+<hr/>
+
+<h2>Add dish to this chef:</h2>
+
+<form th:action="@{/chefs/add-dish}" method="post">
+
+    <input type="hidden" name="chefId" th:value="${chef.id}"/>
+
     <ul>
-        <li th:each="d:${chef.dishes}" th:text="|${d.name} (${d.cuisine}, ${d.preparationTime} min)|"></li>
+        <li th:each="d : ${dishes}">
+            <label>
+                <input type="radio" name="dishId" th:value="${d.id}">
+                <span th:text="|${d.name} (${d.cuisine}, ${d.preparationTime} min)|"></span>
+            </label>
+        </li>
     </ul>
 
-    <a th:href="@{/listChefs}">Back to Chefs</a>
-</section>
+    <button type="submit">Add Dish</button>
+</form>
+
+<br/>
+<a th:href="@{/chefs}">Back to Chefs</a>
+
 </body>
 </html>
