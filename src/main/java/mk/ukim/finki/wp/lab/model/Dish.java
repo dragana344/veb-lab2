@@ -7,6 +7,7 @@ public class Dish {
     private int preparationTime;
     private Long id;
     private static Long counter = 1L;
+    private int likes;
 
     public Dish(String dishId, String name, String cuisine, int preparationTime) {
        this.id=counter++;
@@ -14,6 +15,7 @@ public class Dish {
        this.cuisine = cuisine;
        this.name = name;
        this.dishId=dishId;
+       this.likes=0;
     }
 
     public String getDishId() {
@@ -36,6 +38,10 @@ public class Dish {
         return preparationTime;
     }
 
+    public int getLikes() {
+        return likes;
+    }
+
     public void setDishId(String dishId) {
         this.dishId = dishId;
     }
@@ -44,6 +50,9 @@ public class Dish {
         this.id = id;
     }
 
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 
     public void setName(String name) {
         this.name = name;
