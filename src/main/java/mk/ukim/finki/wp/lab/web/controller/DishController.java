@@ -71,4 +71,13 @@ public class DishController {
         model.addAttribute("dish", dish);
         return "dish-form";
     }
+
+    @PostMapping("/like/{id}")
+    public String addLikes(@PathVariable Long id) {
+
+        dishService.like(id);
+
+        return "redirect:/dishes";
+    }
+
 }
