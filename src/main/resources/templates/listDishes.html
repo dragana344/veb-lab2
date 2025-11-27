@@ -48,6 +48,10 @@
             <form th:action="@{'/dishes/delete/' + ${d.id}}" method="post" style="display:inline;">
                 <button type="submit">Delete</button>
             </form>
+
+            <form th:action="@{'/dishes/like/' + ${d.id}}" method="post" style="display:inline;">
+                <button type="submit">Like (<span th:text="${d.getLikes()}"></span>) </button>
+            </form>
         </td>
     </tr>
     </tbody>
